@@ -48,6 +48,7 @@ const dbInit = async () => {
         user_id INT NOT NULL,
         store_id INT NOT NULL,
         rating TINYINT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+        comment TEXT DEFAULT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
@@ -56,6 +57,14 @@ const dbInit = async () => {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     `);
     console.log('Ratings table ensured.');
+
+    // Ensure comment column is added if ratings table already exists
+    try {
+      await dbConnection.query('ALTER TABLE ratings ADD COLUMN comment TEXT DEFAULT NULL');
+      console.log('Added comment column to ratings table.');
+    } catch (err) {
+      // Column might already exist, ignore error
+    }
 
     // 3. Seed users if users table is empty
     const [rows] = await dbConnection.query('SELECT COUNT(*) as count FROM users');

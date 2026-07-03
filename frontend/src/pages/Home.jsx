@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Coffee, Star, MapPin, Award, CheckCircle, Mail, Send, ChevronRight, Clock } from 'lucide-react';
+import { Coffee, Star, MapPin, Award, CheckCircle, Mail, Send, ChevronRight, Clock, Users } from 'lucide-react';
 import heroCoffee from '../assets/hero_coffee.png';
 
 const Home = ({ onLoginClick, onRegisterClick }) => {
@@ -70,9 +70,9 @@ const Home = ({ onLoginClick, onRegisterClick }) => {
         {/* Links */}
         <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
           <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ background: 'none', border: 'none', color: colors.textDark, cursor: 'pointer', fontWeight: 600, fontSize: '0.95rem' }}>Home</button>
-          <button onClick={() => scrollToSection('features')} style={{ background: 'none', border: 'none', color: colors.textDark, cursor: 'pointer', fontWeight: 600, fontSize: '0.95rem' }}>Menu</button>
-          <button onClick={() => scrollToSection('about')} style={{ background: 'none', border: 'none', color: colors.textDark, cursor: 'pointer', fontWeight: 600, fontSize: '0.95rem' }}>Our Story</button>
-          <button onClick={() => scrollToSection('gallery')} style={{ background: 'none', border: 'none', color: colors.textDark, cursor: 'pointer', fontWeight: 600, fontSize: '0.95rem' }}>Gallery</button>
+          <button onClick={() => scrollToSection('features')} style={{ background: 'none', border: 'none', color: colors.textDark, cursor: 'pointer', fontWeight: 600, fontSize: '0.95rem' }}>Features</button>
+          <button onClick={() => scrollToSection('about')} style={{ background: 'none', border: 'none', color: colors.textDark, cursor: 'pointer', fontWeight: 600, fontSize: '0.95rem' }}>Our Purpose</button>
+          <button onClick={() => scrollToSection('gallery')} style={{ background: 'none', border: 'none', color: colors.textDark, cursor: 'pointer', fontWeight: 600, fontSize: '0.95rem' }}>Local Highlights</button>
           <button onClick={() => scrollToSection('contact')} style={{ background: 'none', border: 'none', color: colors.textDark, cursor: 'pointer', fontWeight: 600, fontSize: '0.95rem' }}>Contact</button>
         </div>
 
@@ -130,25 +130,25 @@ const Home = ({ onLoginClick, onRegisterClick }) => {
           color: '#ffffff'
         }}>
           <h1 style={{
-            fontSize: '3.5rem',
+            fontSize: '3.3rem',
             fontWeight: 700,
             lineHeight: 1.1,
             letterSpacing: '-0.02em',
             fontFamily: "Playfair Display, Georgia, serif"
           }}>
-            Savor the Perfect Brew!
+            Rate Local Cafes, Coffee & Lattes!
           </h1>
           <p style={{
             fontSize: '1.05rem',
             color: 'rgba(255, 255, 255, 0.75)',
             lineHeight: 1.6,
-            maxWidth: '440px'
+            maxWidth: '460px'
           }}>
-            Enjoy our premium selection of hand-crafted roasts and local beans, rated by coffee aficionados to ensure your daily cup is absolute perfection.
+            A dedicated community hub where store owners register their shops for neighborhood outreach, and coffee enthusiasts discover, enjoy, and rate their favorite locality coffee cups.
           </p>
           <div style={{ display: 'flex', gap: '16px', marginTop: '12px' }}>
             <button 
-              onClick={onLoginClick}
+              onClick={onRegisterClick}
               style={{
                 backgroundColor: '#ffffff',
                 color: colors.textDark,
@@ -160,7 +160,7 @@ const Home = ({ onLoginClick, onRegisterClick }) => {
                 fontSize: '0.95rem'
               }}
             >
-              Shop Now
+              Sign Up Now
             </button>
             <button 
               onClick={() => scrollToSection('features')}
@@ -175,7 +175,7 @@ const Home = ({ onLoginClick, onRegisterClick }) => {
                 fontSize: '0.95rem'
               }}
             >
-              Our Menu
+              Explore Features
             </button>
           </div>
         </div>
@@ -203,7 +203,7 @@ const Home = ({ onLoginClick, onRegisterClick }) => {
           marginBottom: '40px',
           color: colors.textDark
         }}>
-          Features
+          How AromaRate Works
         </h2>
         <div style={{
           display: 'flex',
@@ -214,7 +214,7 @@ const Home = ({ onLoginClick, onRegisterClick }) => {
           margin: '0 auto',
           gap: '20px'
         }}>
-          {/* Feature 1 */}
+          {/* Column 1 */}
           <div style={{
             flex: '1 1 220px',
             display: 'flex',
@@ -235,15 +235,15 @@ const Home = ({ onLoginClick, onRegisterClick }) => {
               color: '#fff',
               marginBottom: '16px'
             }}>
-              <Coffee size={24} />
+              <MapPin size={24} />
             </div>
-            <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '8px' }}>Espresso</h4>
+            <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '8px' }}>Locate Shops</h4>
             <p style={{ fontSize: '0.85rem', color: colors.textMuted, lineHeight: 1.5 }}>
-              Intense, full-bodied shots crafted using single-origin beans.
+              Browse a directory of registered cafes in your immediate locality.
             </p>
           </div>
 
-          {/* Feature 2 */}
+          {/* Column 2 */}
           <div style={{
             flex: '1 1 220px',
             display: 'flex',
@@ -264,15 +264,15 @@ const Home = ({ onLoginClick, onRegisterClick }) => {
               color: '#fff',
               marginBottom: '16px'
             }}>
-              <Coffee size={24} />
+              <Star size={24} />
             </div>
-            <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '8px' }}>Latte</h4>
+            <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '8px' }}>Rate Coffee & Lattes</h4>
             <p style={{ fontSize: '0.85rem', color: colors.textMuted, lineHeight: 1.5 }}>
-              Smooth espresso blended with steamed milk and delicate microfoam.
+              Submit 1-to-5 star scores based on latte art, coffee taste, and ambiance.
             </p>
           </div>
 
-          {/* Feature 3 */}
+          {/* Column 3 */}
           <div style={{
             flex: '1 1 220px',
             display: 'flex',
@@ -293,15 +293,15 @@ const Home = ({ onLoginClick, onRegisterClick }) => {
               color: '#fff',
               marginBottom: '16px'
             }}>
-              <Coffee size={24} />
+              <Users size={24} />
             </div>
-            <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '8px' }}>Latte</h4>
+            <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '8px' }}>Reach Customers</h4>
             <p style={{ fontSize: '0.85rem', color: colors.textMuted, lineHeight: 1.5 }}>
-              Custom flavored variations featuring house-made organic syrups.
+              Cafe owners list their stores to expand locality visibility and build outreach.
             </p>
           </div>
 
-          {/* Feature 4 */}
+          {/* Column 4 */}
           <div style={{
             flex: '1 1 220px',
             display: 'flex',
@@ -323,21 +323,21 @@ const Home = ({ onLoginClick, onRegisterClick }) => {
             }}>
               <Coffee size={24} />
             </div>
-            <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '8px' }}>Cold Brew</h4>
+            <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '8px' }}>Refined Selections</h4>
             <p style={{ fontSize: '0.85rem', color: colors.textMuted, lineHeight: 1.5 }}>
-              Steeped for 24 hours to deliver a naturally sweet, low-acid refresh.
+              Check user feedback lists to order the absolute best espressos in town.
             </p>
           </div>
         </div>
       </section>
 
       {/* 4. Split Promo Section */}
-      <section style={{
+      <section id="about" style={{
         display: 'flex',
         flexWrap: 'wrap',
         borderBottom: `1px solid ${colors.border}`
       }}>
-        {/* Left Side: Why Choose Us */}
+        {/* Left Side: For Coffee Lovers */}
         <div style={{
           flex: '1 1 500px',
           padding: '60px 80px',
@@ -348,9 +348,18 @@ const Home = ({ onLoginClick, onRegisterClick }) => {
           justifyContent: 'center',
           gap: '20px'
         }}>
-          <h2 style={{ fontSize: '2.2rem', fontWeight: 700 }}>Why Choose Us?</h2>
+          <span style={{
+            fontSize: '0.85rem',
+            color: colors.accentLight,
+            fontWeight: 700,
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em'
+          }}>
+            For Coffee Lovers
+          </span>
+          <h2 style={{ fontSize: '2.2rem', fontWeight: 700 }}>Enjoy, Explore & Review</h2>
           <p style={{ fontSize: '0.95rem', color: 'rgba(255, 255, 255, 0.8)', lineHeight: 1.6, maxWidth: '440px' }}>
-            We source our beans directly from sustainable micro-lots around the world. Every roast is tailored to bring out local profiles, rated by our customer base to guarantee quality.
+            Find the nearest cafe serve and cast your rating. Keep track of your own rating scores and help others find the perfect specialty coffee.
           </p>
           <button
             onClick={onLoginClick}
@@ -369,11 +378,11 @@ const Home = ({ onLoginClick, onRegisterClick }) => {
             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)'}
             onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
           >
-            Discover
+            Find Cafes
           </button>
         </div>
 
-        {/* Right Side: Special Offer */}
+        {/* Right Side: For Store Owners */}
         <div style={{
           flex: '1 1 500px',
           padding: '60px 80px',
@@ -390,16 +399,16 @@ const Home = ({ onLoginClick, onRegisterClick }) => {
             textTransform: 'uppercase',
             letterSpacing: '0.05em'
           }}>
-            Organic Honey Roast
+            For Store Owners
           </span>
           <h2 style={{ fontSize: '2.2rem', fontWeight: 700, color: colors.textDark }}>
-            20% off from 10 am
+            Boost Locality Outreach
           </h2>
           <p style={{ fontSize: '0.95rem', color: colors.textMuted, lineHeight: 1.6, maxWidth: '440px' }}>
-            Try our special organic double shots or custom honey lattes during happy hours. Roasted fresh every single morning.
+            Register your store details, email, and address. Enable local users to locate your establishment, read your star score dashboard, and visit you for their morning caffeinated cups.
           </p>
           <button
-            onClick={onLoginClick}
+            onClick={onRegisterClick}
             style={{
               alignSelf: 'flex-start',
               backgroundColor: colors.textDark,
@@ -412,12 +421,12 @@ const Home = ({ onLoginClick, onRegisterClick }) => {
               fontSize: '0.9rem'
             }}
           >
-            Order & Register
+            Register My Cafe
           </button>
         </div>
       </section>
 
-      {/* 5. Visit Us TODAY Gallery */}
+      {/* 5. Locality Highlights Gallery */}
       <section id="gallery" style={{
         padding: '60px 48px',
         backgroundColor: colors.bg,
@@ -425,10 +434,10 @@ const Home = ({ onLoginClick, onRegisterClick }) => {
       }}>
         <div style={{ textAlign: 'center', marginBottom: '40px' }}>
           <span style={{ fontSize: '0.8rem', color: colors.accent, fontWeight: 700, textTransform: 'uppercase' }}>
-            Visit Us TODAY
+            Featured Local Cups
           </span>
           <h2 style={{ fontSize: '2rem', fontWeight: 700, marginTop: '4px' }}>
-            Morning Happy -
+            Morning Happy Highlights
           </h2>
         </div>
 
@@ -461,7 +470,7 @@ const Home = ({ onLoginClick, onRegisterClick }) => {
                 <h5 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '4px' }}>
                   {item === 1 ? 'Macchiato Art' : item === 2 ? 'Espresso Tonic' : item === 3 ? 'Classic Flat White' : 'Pour Over Origin'}
                 </h5>
-                <span style={{ fontSize: '0.8rem', color: colors.accent, fontWeight: 600 }}>$4.50</span>
+                <span style={{ fontSize: '0.8rem', color: colors.accent, fontWeight: 600 }}>Locality Pick</span>
               </div>
             </div>
           ))}

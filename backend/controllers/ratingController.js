@@ -2,7 +2,7 @@ const pool = require('../config/db');
 
 const submitRating = async (req, res) => {
   const userId = req.user.id;
-  const { store_id, rating } = req.body;
+  const { store_id, rating, comment } = req.body;
 
   // Validate rating value
   const ratingVal = parseInt(rating);
@@ -25,8 +25,8 @@ const submitRating = async (req, res) => {
 
     // Insert new rating
     await pool.query(
-      'INSERT INTO ratings (user_id, store_id, rating) VALUES (?, ?, ?)',
-      [userId, store_id, ratingVal]
+      'INSERT INTO ratings (user_id, store_id, rating, comment) VALUES (?, ?, ?, ?)',
+      [userId, store_id, ratingVal, comment || null]
     );
 
     res.status(201).json({ message: 'Rating submitted successfully!' });
@@ -38,7 +38,7 @@ const submitRating = async (req, res) => {
 
 const modifyRating = async (req, res) => {
   const userId = req.user.id;
-  const { store_id, rating } = req.body;
+  const { store_id, rating, comment } = req.body;
 
   // Validate rating value
   const ratingVal = parseInt(rating);
@@ -55,8 +55,8 @@ const modifyRating = async (req, res) => {
 
     // Update rating
     await pool.query(
-      'UPDATE ratings SET rating = ? WHERE user_id = ? AND store_id = ?',
-      [ratingVal, userId, store_id]
+      'UPDATE ratings SET rating = ?, comment = ? WHERE user_id = ? AND store_id = ?',
+      [ratingVal, comment !== undefined ? comment : null, userId, store_id]
     );
 
     res.status(200).json({ message: 'Rating modified successfully!' });

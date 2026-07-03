@@ -36,15 +36,24 @@ export const AuthProvider = ({ children }) => {
     try {
       if (isFirebaseFake) {
         console.warn('Firebase placeholder detected. Authenticating via local MySQL fallback...');
-        const response = await api.post('/auth/login', { email, password });
-        const { token: userToken, user: userData } = response.data;
+        try {
+          const response = await api.post('/auth/login', { email, password });
+          const { token: userToken, user: userData } = response.data;
 
-        localStorage.setItem('token', userToken);
-        localStorage.setItem('user', JSON.stringify(userData));
+          localStorage.setItem('token', userToken);
+          localStorage.setItem('user', JSON.stringify(userData));
 
-        setToken(userToken);
-        setUser(userData);
-        return { success: true };
+          setToken(userToken);
+          setUser(userData);
+          return { success: true };
+        } catch (localErr) {
+          console.error('Local MySQL login failed:', localErr);
+          const msg = localErr.response?.data?.message || 
+                     (localErr.message === 'Network Error' 
+                       ? 'Cannot connect to backend server. Please verify the server is running on port 5000.' 
+                       : localErr.message || 'Login failed.');
+          return { success: false, error: msg };
+        }
       }
 
       // 1. Authenticate with Firebase Auth
@@ -85,6 +94,8 @@ export const AuthProvider = ({ children }) => {
         errMsg = 'Invalid email or password.';
       } else if (error.response?.data?.message) {
         errMsg = error.response.data.message;
+      } else if (error.message === 'Network Error') {
+        errMsg = 'Cannot reach backend server. Please check that it is running on port 5000.';
       }
       return { success: false, error: errMsg };
     }
@@ -97,14 +108,23 @@ export const AuthProvider = ({ children }) => {
 
       if (isFirebaseFake) {
         console.warn('Firebase placeholder detected. Registering via local MySQL fallback...');
-        await api.post('/auth/register', { 
-          name, 
-          email, 
-          address: finalAddress, 
-          password, 
-          role: finalRole 
-        });
-        return { success: true };
+        try {
+          await api.post('/auth/register', { 
+            name, 
+            email, 
+            address: finalAddress, 
+            password, 
+            role: finalRole 
+          });
+          return { success: true };
+        } catch (localErr) {
+          console.error('Local MySQL registration failed:', localErr);
+          const msg = localErr.response?.data?.message || 
+                     (localErr.message === 'Network Error' 
+                       ? 'Cannot connect to backend server. Please verify the server is running on port 5000.' 
+                       : localErr.message || 'Registration failed.');
+          return { success: false, error: msg };
+        }
       }
 
       // 1. Check if email is already registered on our local DB
@@ -157,6 +177,8 @@ export const AuthProvider = ({ children }) => {
         errMsg = 'Password is too weak for Firebase Auth.';
       } else if (error.response?.data?.message) {
         errMsg = error.response.data.message;
+      } else if (error.message === 'Network Error') {
+        errMsg = 'Cannot reach backend server. Please verify the server is running on port 5000.';
       }
       return { success: false, error: errMsg };
     }
