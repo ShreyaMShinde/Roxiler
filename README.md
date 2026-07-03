@@ -13,8 +13,8 @@ The portal features a warm light-coffee design system matching the homepage's ae
 - Search dynamically by cafe name and location.
 - Sort cards instantly by average ratings (highest or lowest first).
 
-### 2. Justdial-style Cafe Details
-- **Breadcrumbs**: Navigate easily throughSatara > Pizza Outlets > Wai City paths.
+### 2. Cohesive Cafe Details
+- **Breadcrumbs**: Navigate easily through Satara > Pizza Outlets > Wai City paths.
 - **Photo Grid**: Responsive layouts showing interior, exterior, and coffee shots with a simulated "Add Photo" handler.
 - **Timings Dropdown**: A dropdown weekly schedule showing operating hours.
 - **Actions Bar**: Actionable links for Phone, WhatsApp, and "Ask Anything" (Beta).
@@ -55,10 +55,10 @@ The portal features a warm light-coffee design system matching the homepage's ae
    ```env
    PORT=5000
    DB_HOST=localhost
-   DB_USER=root
-   DB_PASSWORD=Root@123
+   DB_USER=your_db_user
+   DB_PASSWORD=your_db_password
    DB_NAME=cafe_rating_db
-   JWT_SECRET=super_secret_cafe_ratings_jwt_secret_key_123
+   JWT_SECRET=your_jwt_secret
    ```
 4. Start the server:
    ```bash
@@ -83,9 +83,5 @@ The portal features a warm light-coffee design system matching the homepage's ae
 
 ---
 
-## 🔑 Development Seed Accounts
-For manual testing, the following mock accounts are seeded in the database:
-- **System Administrator**: `admin@caferatings.com` / `Password@123`
-- **Store Owner**: `dailygrind@cafe.com` / `Password@123`
-- **Normal User**: `alice@gmail.com` / `Password@123`
-- **Normal User**: `bob@gmail.com` / `Password@123`
+## 🔑 Setup Seed Accounts
+The database automatically seeds test accounts for development. Check `backend/utils/dbInit.js` to view or customize default development accounts and credentials.
